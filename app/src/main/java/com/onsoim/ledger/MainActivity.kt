@@ -1,29 +1,51 @@
 package com.onsoim.ledger
 
-import android.content.Context
-import android.content.pm.PackageManager
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.activity_add.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+    private var expenseDB: ExpenseDB? = null
+    private var expenses = listOf<Expense>()
+    lateinit var mAdapter: ExpenseAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        text.text = GetAppVersion(this)
-    }
+        expenseDB = ExpenseDB.getInstance(this)
+        mAdapter = ExpenseAdapter(this, expenses)
 
-    fun GetAppVersion(context: Context): String {
-        var version = ""
+        val r = Runnable {
+            try {
+                expenses = expenseDB?.expenseDao()?.getAll()!!
+                mAdapter = ExpenseAdapter(this, expenses)
+                mAdapter.notifyDataSetChanged()
 
-        try {
-            val pInfo = context.packageManager.getPackageInfo(context.packageName, 0)
-            version = pInfo.versionName
-        } catch (e: PackageManager.NameNotFoundException) {
-            e.printStackTrace()
+                mRecyclerView.adapter = mAdapter
+                mRecyclerView.layoutManager = LinearLayoutManager(this)
+                mRecyclerView.setHasFixedSize(true)
+            } catch (e: Exception) {
+                Log.d("tag", "Error - $e")
+            }
         }
 
-        return version
+        val thread = Thread(r)
+        thread.start()
+
+        addBtn.setOnClickListener {
+            startActivity(Intent(this, AddActivity::class.java))
+            finish()
+        }
+    }
+
+    override fun onDestroy() {
+        ExpenseDB.destroyInstance()
+        expenseDB = null
+        super.onDestroy()
     }
 }
