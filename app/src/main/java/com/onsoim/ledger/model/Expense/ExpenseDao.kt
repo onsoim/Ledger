@@ -1,4 +1,4 @@
-package com.onsoim.ledger
+package com.onsoim.ledger.model.Expense
 
 import androidx.room.Dao
 import androidx.room.Insert

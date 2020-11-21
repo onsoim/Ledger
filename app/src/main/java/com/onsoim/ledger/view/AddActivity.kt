@@ -1,8 +1,12 @@
-package com.onsoim.ledger
+package com.onsoim.ledger.view
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.onsoim.ledger.R
+import com.onsoim.ledger.model.Expense.Expense
+import com.onsoim.ledger.model.LedgerDB
+import com.onsoim.ledger.view.main.MainActivity
 import kotlinx.android.synthetic.main.activity_add.*
 
 class AddActivity : AppCompatActivity() {

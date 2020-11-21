@@ -1,9 +1,11 @@
-package com.onsoim.ledger
+package com.onsoim.ledger.model
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.onsoim.ledger.model.Expense.Expense
+import com.onsoim.ledger.model.Expense.ExpenseDao
 
 @Database(
     version = 1,
