@@ -21,10 +21,10 @@ class AddActivity : AppCompatActivity() {
         val addRunnable = Runnable {
             val newExpense = Expense()
             newExpense.date = date.toString()
-            newExpense.account = account.text.toString()
-            newExpense.category = category.text.toString()
-            newExpense.amount = amount.text.toString().toLong()
-            newExpense.note = note.text.toString()
+            newExpense.account = vAccount.text.toString()
+            newExpense.category = vD2Category.text.toString()
+            newExpense.amount = vAmount.text.toString().toLong()
+            newExpense.remark = vRemarks.text.toString()
             ledgerDB?.expenseDao()?.insert(newExpense)
         }
 

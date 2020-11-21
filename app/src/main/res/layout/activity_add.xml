@@ -2,50 +2,107 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/date"
+    <TableLayout
+        android:id="@+id/query"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:stretchColumns="1, 2"
+        android:shrinkColumns="0,1,2,3"
+        android:layout_margin="10dp">
 
-    <EditText
-        android:id="@+id/account"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        app:layout_constraintTop_toBottomOf="@id/date"
-        />
+        <TableRow
+            android:id="@+id/date"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="2.5dp">
+            <TextView
+                android:layout_margin="3dp"
+                android:text="Date"/>
+            <EditText
+                android:id="@+id/vDate"
+                android:layout_height="wrap_content"
+                android:layout_span="2"
+                android:maxLength="10"/>
+        </TableRow>
 
-    <EditText
-        android:id="@+id/category"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        app:layout_constraintTop_toBottomOf="@id/account"
-        />
+        <TableRow
+            android:id="@+id/category"
+            android:layout_marginTop="2.5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="2.5dp">
+            <TextView
+                android:layout_margin="3dp"
+                android:text="Category"/>
+            <EditText
+                android:id="@+id/vD1Category"
+                android:layout_height="wrap_content"/>
 
-    <EditText
-        android:id="@+id/amount"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        app:layout_constraintTop_toBottomOf="@id/category"
-        android:inputType="number"
-        />
+            <EditText
+                android:id="@+id/vD2Category"
+                android:layout_height="wrap_content" />
+        </TableRow>
 
-    <EditText
-        android:id="@+id/note"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        app:layout_constraintTop_toBottomOf="@id/amount"
-        />
+        <TableRow
+            android:id="@+id/amount"
+            android:layout_marginTop="2.5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="2.5dp">
+            <TextView
+                android:layout_margin="3dp"
+                android:text="Amount"/>
+            <EditText
+                android:id="@+id/vAmount"
+                android:layout_height="wrap_content"
+                android:layout_span="2"
+                android:inputType="number"
+                android:maxLength="11"/>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/account"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2.5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="2.5dp">
+            <TextView
+                android:layout_margin="3dp"
+                android:text="Account" />
+            <EditText
+                android:id="@+id/vAccount"
+                android:layout_height="wrap_content"
+                android:layout_span="2"/>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/remarks"
+            android:layout_marginTop="2.5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp">
+            <TextView
+                android:layout_margin="3dp"
+                android:text="Remarks"/>
+            <EditText
+                android:id="@+id/vRemarks"
+                android:layout_height="wrap_content"
+                android:layout_span="2"/>
+        </TableRow>
+    </TableLayout>
 
     <Button
         android:id="@+id/submit"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         android:text="Add"
         />

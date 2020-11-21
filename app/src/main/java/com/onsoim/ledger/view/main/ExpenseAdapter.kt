@@ -24,12 +24,12 @@ class ExpenseAdapter(private val context: Context, private val expenses: List<Ex
     }
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val note: TextView = itemView.findViewById(R.id.note)
+        private val remark: TextView = itemView.findViewById(R.id.remark)
         private val account: TextView = itemView.findViewById(R.id.account)
         private val amount: TextView = itemView.findViewById(R.id.amount)
 
         fun bind(expense: Expense) {
-            note.text = expense.note
+            remark.text = expense.remark
             account.text = expense.account
             amount.text = expense.amount.toString()
         }
