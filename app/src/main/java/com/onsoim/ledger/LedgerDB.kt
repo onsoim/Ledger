@@ -5,20 +5,25 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Expense::class], version = 1)
-abstract class ExpenseDB: RoomDatabase() {
+@Database(
+    version = 1,
+    entities = [
+        Expense::class,
+    ]
+)
+abstract class LedgerDB: RoomDatabase() {
     abstract fun expenseDao(): ExpenseDao
 
     companion object {
-        private var INSTANCE: ExpenseDB? = null
+        private var INSTANCE: LedgerDB? = null
 
-        fun getInstance(context: Context): ExpenseDB? {
+        fun getInstance(context: Context): LedgerDB? {
             if (INSTANCE == null) {
-                synchronized(ExpenseDB::class) {
+                synchronized(LedgerDB::class) {
                     INSTANCE = Room.databaseBuilder(
                         context.applicationContext,
-                        ExpenseDB::class.java,
-                        "expense.db")
+                        LedgerDB::class.java,
+                        "Ledger.db")
                         .fallbackToDestructiveMigration()
                         .build()
                 }

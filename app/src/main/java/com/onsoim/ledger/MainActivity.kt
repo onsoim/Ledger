@@ -5,11 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.activity_add.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-    private var expenseDB: ExpenseDB? = null
+    private var ledgerDB: LedgerDB? = null
     private var expenses = listOf<Expense>()
     lateinit var mAdapter: ExpenseAdapter
 
@@ -17,12 +16,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        expenseDB = ExpenseDB.getInstance(this)
+        ledgerDB = LedgerDB.getInstance(this)
         mAdapter = ExpenseAdapter(this, expenses)
 
         val r = Runnable {
             try {
-                expenses = expenseDB?.expenseDao()?.getAll()!!
+                expenses = ledgerDB?.expenseDao()?.getAll()!!
                 mAdapter = ExpenseAdapter(this, expenses)
                 mAdapter.notifyDataSetChanged()
 
@@ -44,8 +43,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        ExpenseDB.destroyInstance()
-        expenseDB = null
+        LedgerDB.destroyInstance()
+        ledgerDB = null
         super.onDestroy()
     }
 }

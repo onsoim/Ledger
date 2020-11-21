@@ -6,13 +6,13 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_add.*
 
 class AddActivity : AppCompatActivity() {
-    private var expenseDB : ExpenseDB? = null
+    private var ledgerDB : LedgerDB? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add)
 
-        expenseDB = ExpenseDB.getInstance(this)
+        ledgerDB = LedgerDB.getInstance(this)
 
         val addRunnable = Runnable {
             val newExpense = Expense()
@@ -21,7 +21,7 @@ class AddActivity : AppCompatActivity() {
             newExpense.category = category.text.toString()
             newExpense.amount = amount.text.toString().toLong()
             newExpense.note = note.text.toString()
-            expenseDB?.expenseDao()?.insert(newExpense)
+            ledgerDB?.expenseDao()?.insert(newExpense)
         }
 
         submit.setOnClickListener {
@@ -35,7 +35,7 @@ class AddActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        ExpenseDB.destroyInstance()
+        LedgerDB.destroyInstance()
         super.onDestroy()
     }
 }
