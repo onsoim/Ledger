@@ -10,7 +10,7 @@ class Expense(@PrimaryKey(autoGenerate = true) var id: Long?,
               @ColumnInfo(name = "account") var account: String,
               @ColumnInfo(name = "category") var category: String,
               @ColumnInfo(name = "amount") var amount: Long,
-              @ColumnInfo(name = "remarks") var remark: String,
+              @ColumnInfo(name = "remark") var remark: String,
 ) {
     constructor() : this(
         null,
