@@ -9,7 +9,7 @@ class Expense(@PrimaryKey(autoGenerate = true) var id: Long?,
               @ColumnInfo(name = "date") var date: String,
               @ColumnInfo(name = "account") var account: String,
               @ColumnInfo(name = "category") var category: String,
-              @ColumnInfo(name = "amount") var amount: Int,
+              @ColumnInfo(name = "amount") var amount: Long,
               @ColumnInfo(name = "note") var note: String,
 ) {
     constructor() : this(

@@ -19,7 +19,7 @@ class AddActivity : AppCompatActivity() {
             newExpense.date = date.toString()
             newExpense.account = account.text.toString()
             newExpense.category = category.text.toString()
-            newExpense.amount = amount.text.toString().toInt()
+            newExpense.amount = amount.text.toString().toLong()
             newExpense.note = note.text.toString()
             expenseDB?.expenseDao()?.insert(newExpense)
         }
