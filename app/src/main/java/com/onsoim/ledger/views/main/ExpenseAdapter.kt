@@ -1,4 +1,4 @@
-package com.onsoim.ledger.view.main
+package com.onsoim.ledger.views.main
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,9 +7,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.onsoim.ledger.R
-import com.onsoim.ledger.model.Expense.Expense
+import com.onsoim.ledger.model.Expense
+import kotlin.math.exp
 
-class ExpenseAdapter(private val context: Context, private val expenses: List<Expense>) : RecyclerView.Adapter<ExpenseAdapter.Holder>() {
+class ExpenseAdapter(private val context: Context, private var expenses: List<Expense>) : RecyclerView.Adapter<ExpenseAdapter.Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_expense, parent, false)
         return Holder(view)
@@ -21,6 +22,11 @@ class ExpenseAdapter(private val context: Context, private val expenses: List<Ex
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.bind(expenses[position])
+    }
+
+    internal fun setExpense(expense: List<Expense>) {
+        this.expenses = expenses
+        notifyDataSetChanged()
     }
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {

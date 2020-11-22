@@ -62,11 +62,17 @@ dependencies {
 
     // for 'room' dependencies
     def roomVersion = "2.2.5"
-    implementation "androidx.room:room-runtime:$roomVersion"
     kapt "androidx.room:room-compiler:$roomVersion"
-    kaptTest "androidx.room:rook-ktx:$roomVersion"
+    implementation "androidx.room:room-ktx:$roomVersion"
+    implementation "androidx.room:room-runtime:$roomVersion"
 
     // for 'recyclerview' dependencies
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
 
+    // for 'coroutines' dependencies
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9'
+
+    // for 'lifecycle' dependencies
+    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0-beta01'
 }
