@@ -24,7 +24,7 @@ class ExpenseAdapter(private val context: Context, private var expenses: List<Ex
         holder.bind(expenses[position])
     }
 
-    internal fun setExpense(expense: List<Expense>) {
+    internal fun setExpense(expenses: List<Expense>) {
         this.expenses = expenses
         notifyDataSetChanged()
     }
