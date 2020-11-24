@@ -36,7 +36,7 @@ class ExpenseAdapter(private val context: Context, private var expenses: List<Ex
 
         fun bind(expense: Expense) {
             remark.text = expense.remark
-            account.text = expense.account
+            account.text = expense.vD2Account
             amount.text = expense.amount.toString()
         }
     }

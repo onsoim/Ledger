@@ -28,9 +28,10 @@ abstract class LedgerDB: RoomDatabase() {
             INSTANCE?.let { database ->
                 scope.launch {
                     val accountDao = database.accountDao()
-                    accountDao.insert(
-                        Account("Cash", "Wallet")
-                    )
+                    if (accountDao.getAllList().isEmpty()) {
+                        accountDao.insert( Account("Accounts", "KB") )
+                        accountDao.insert( Account("Cash", "Wallet") )
+                    }
                 }
             }
         }

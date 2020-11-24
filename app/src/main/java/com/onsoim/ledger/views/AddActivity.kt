@@ -16,6 +16,11 @@ class AddActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add)
 
+        setCategory()
+    private fun setCategory() {
+
+    }
+
         submit.setOnClickListener {
             val newExpense = Expense()
             newExpense.date = date.toString()

@@ -23,6 +23,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        setExpense()
+    }
+
+    private fun setExpense() {
         mAdapter = ExpenseAdapter(this, expenses)
 
         mRecyclerView.adapter = mAdapter
@@ -33,7 +37,6 @@ class MainActivity : AppCompatActivity() {
         expenseViewModel.allExpense.observe(this, Observer { expenses ->
             expenses.let { mAdapter.setExpense(it) }
         })
-
 
         addBtn.setOnClickListener {
             startActivityForResult(
