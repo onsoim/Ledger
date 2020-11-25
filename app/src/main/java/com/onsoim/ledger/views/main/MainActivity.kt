@@ -30,7 +30,10 @@ class MainActivity : AppCompatActivity() {
         mAdapter = ExpenseAdapter(this, expenses)
 
         mRecyclerView.adapter = mAdapter
-        mRecyclerView.layoutManager = LinearLayoutManager(this)
+        val manager = LinearLayoutManager(this)
+        manager.reverseLayout = true
+        manager.stackFromEnd = true
+        mRecyclerView.layoutManager = manager
         mRecyclerView.setHasFixedSize(true)
 
         expenseViewModel = ViewModelProvider(this).get(ExpenseViewModel::class.java)
