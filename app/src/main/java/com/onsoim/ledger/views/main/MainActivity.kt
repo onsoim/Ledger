@@ -11,10 +11,16 @@ import com.onsoim.ledger.views.new.ExpenseActivity
 import com.onsoim.ledger.R
 import com.onsoim.ledger.model.Expense
 import com.onsoim.ledger.model.LedgerDB
+import com.onsoim.ledger.viewmodel.account.AccountViewModel
 import com.onsoim.ledger.viewmodel.expense.ExpenseViewModel
+import com.onsoim.ledger.views.new.AccountActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlin.math.exp
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var accountViewModel: AccountViewModel
     private lateinit var expenseViewModel: ExpenseViewModel
     private var expenses = listOf<Expense>()
     lateinit var mAdapter: ExpenseAdapter
@@ -23,7 +29,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        setButton()
+    }
+
+    private fun setButton() {
+        setAccount()
         setExpense()
+    }
+
+    private fun setAccount() {
+        newAccount.setOnClickListener {
+            startActivity(Intent(this, AccountActivity::class.java))
+        }
     }
 
     private fun setExpense() {
@@ -41,7 +58,7 @@ class MainActivity : AppCompatActivity() {
             expenses.let { mAdapter.setExpense(it) }
         })
 
-        addBtn.setOnClickListener {
+        newExpense.setOnClickListener {
             startActivityForResult(
                 Intent(this, ExpenseActivity::class.java),
                 1
@@ -54,7 +71,15 @@ class MainActivity : AppCompatActivity() {
 
         if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
             data?.getSerializableExtra("Expense")?.let {
-                expenseViewModel.insert(it as Expense)
+                val expense = it as Expense
+
+                accountViewModel = ViewModelProvider(this).get(AccountViewModel::class.java)
+                GlobalScope.launch {
+                    val account = accountViewModel.getAccount(expense.vD1Account, expense.vD2Account)
+                    account.balance -= expense.amount
+                    accountViewModel.update(account)
+                }
+                expenseViewModel.insert(expense)
             }
         }
     }

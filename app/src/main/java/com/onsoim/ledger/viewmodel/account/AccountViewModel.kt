@@ -27,7 +27,19 @@ class AccountViewModel(application: Application) : AndroidViewModel(application)
         repository.insert(account)
     }
 
+    fun update(account: Account) = viewModelScope.launch {
+        repository.update(account)
+    }
+
     suspend fun getName(category: String) = withContext(Dispatchers.IO) {
         repository.allAccountName(category)
+    }
+
+    suspend fun getAccount(category: String, name: String) = withContext(Dispatchers.IO) {
+        repository.getAccount(category, name)
+    }
+
+    suspend fun getBalance(name: String) = withContext(Dispatchers.IO) {
+        repository.getBalance(name)
     }
 }
