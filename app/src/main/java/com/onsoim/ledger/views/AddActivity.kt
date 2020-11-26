@@ -107,7 +107,7 @@ class AddActivity : AppCompatActivity() {
     private fun setButton() {
         submit.setOnClickListener {
             val newExpense = Expense()
-            newExpense.date = date.toString()
+            newExpense.date = vDate.text.toString()
             newExpense.vD1Category = vD1Category.text.toString()
             newExpense.vD2Category = vD2Category.text.toString()
             newExpense.vD1Account = accountCategory
