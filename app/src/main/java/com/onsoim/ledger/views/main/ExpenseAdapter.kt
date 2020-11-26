@@ -8,7 +8,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.onsoim.ledger.R
 import com.onsoim.ledger.model.Expense
-import kotlin.math.exp
 
 class ExpenseAdapter(private val context: Context, private var expenses: List<Expense>) : RecyclerView.Adapter<ExpenseAdapter.Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {

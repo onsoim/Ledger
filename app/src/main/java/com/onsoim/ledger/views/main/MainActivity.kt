@@ -7,7 +7,7 @@ import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.onsoim.ledger.views.AddActivity
+import com.onsoim.ledger.views.new.ExpenseActivity
 import com.onsoim.ledger.R
 import com.onsoim.ledger.model.Expense
 import com.onsoim.ledger.model.LedgerDB
@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 
         addBtn.setOnClickListener {
             startActivityForResult(
-                Intent(this, AddActivity::class.java),
+                Intent(this, ExpenseActivity::class.java),
                 1
             )
         }

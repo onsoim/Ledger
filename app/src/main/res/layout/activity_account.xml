@@ -17,58 +17,7 @@
         android:layout_margin="10dp">
 
         <TableRow
-            android:id="@+id/date"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="2.5dp">
-            <TextView
-                android:layout_margin="3dp"
-                android:text="Date"/>
-            <EditText
-                android:id="@+id/vDate"
-                android:layout_height="wrap_content"
-                android:layout_span="2"
-                android:maxLength="10"/>
-        </TableRow>
-
-        <TableRow
             android:id="@+id/category"
-            android:layout_marginTop="2.5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="2.5dp">
-            <TextView
-                android:layout_margin="3dp"
-                android:text="Category"/>
-            <EditText
-                android:id="@+id/vD1Category"
-                android:layout_height="wrap_content"/>
-
-            <EditText
-                android:id="@+id/vD2Category"
-                android:layout_height="wrap_content" />
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/amount"
-            android:layout_marginTop="2.5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="2.5dp">
-            <TextView
-                android:layout_margin="3dp"
-                android:text="Amount"/>
-            <EditText
-                android:id="@+id/vAmount"
-                android:layout_height="wrap_content"
-                android:layout_span="2"
-                android:inputType="number"
-                android:maxLength="11"/>
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/account"
             android:layout_height="wrap_content"
             android:layout_marginTop="2.5dp"
             android:layout_marginLeft="5dp"
@@ -76,35 +25,50 @@
             android:layout_marginBottom="2.5dp">
             <TextView
                 android:layout_margin="3dp"
-                android:text="Account" />
-            <RadioGroup
-                android:id="@+id/vD1Account"
+                android:text="Category" />
+            <EditText
+                android:id="@+id/vCategory"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" >
-            </RadioGroup>
-            <RadioGroup
-                android:id="@+id/vD2Account"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" >
-            </RadioGroup>
+                android:layout_height="wrap_content" >
+            </EditText>
         </TableRow>
 
         <TableRow
-            android:id="@+id/remarks"
+            android:id="@+id/name"
+            android:layout_height="wrap_content"
             android:layout_marginTop="2.5dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:layout_marginBottom="5dp">
+            android:layout_marginBottom="2.5dp">
             <TextView
                 android:layout_margin="3dp"
-                android:text="Remarks"/>
+                android:text="@string/new_name" />
             <EditText
-                android:id="@+id/vRemarks"
+                android:id="@+id/vName"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_span="2"/>
+                android:orientation="vertical" >
+            </EditText>
         </TableRow>
+
+        <TableRow
+            android:id="@+id/balance"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2.5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="2.5dp">
+            <TextView
+                android:layout_margin="3dp"
+                android:text="@string/new_balance" />
+            <EditText
+                android:id="@+id/vBalance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+            </EditText>
+        </TableRow>
+
     </TableLayout>
 
     <Button
@@ -112,7 +76,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:text="Add"
+        android:text="@string/button_add"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

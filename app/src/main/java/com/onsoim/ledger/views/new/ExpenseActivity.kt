@@ -1,4 +1,4 @@
-package com.onsoim.ledger.views
+package com.onsoim.ledger.views.new
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,19 +13,19 @@ import com.onsoim.ledger.model.Account
 import com.onsoim.ledger.model.Expense
 import com.onsoim.ledger.viewmodel.account.AccountViewModel
 import com.onsoim.ledger.views.main.MainActivity
-import kotlinx.android.synthetic.main.activity_add.*
+import kotlinx.android.synthetic.main.activity_expense.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.io.Serializable
 
-class AddActivity : AppCompatActivity() {
+class ExpenseActivity : AppCompatActivity() {
     private lateinit var accountCategory : String
     private lateinit var accountName : String
     private var flag = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add)
+        setContentView(R.layout.activity_expense)
 
         setCategory()
         setAccount()
@@ -50,7 +50,7 @@ class AddActivity : AppCompatActivity() {
         newCategory.hint = "new account category"
         vD1Account.addView(newCategory)
 
-        val newName = EditText(this@AddActivity)
+        val newName = EditText(this@ExpenseActivity)
         newName.hint = "new account name"
         // newName.text = null
 
@@ -85,7 +85,7 @@ class AddActivity : AppCompatActivity() {
                     val c = findViewById<RadioButton>(checkedId)
                     accountCategory = c.text.toString()
                     for (name: String in accountViewModel.getName(accountCategory)) {
-                        val r = RadioButton(this@AddActivity)
+                        val r = RadioButton(this@ExpenseActivity)
                         r.text = name
                         runOnUiThread { vD2Account.addView(r) }
                     }
