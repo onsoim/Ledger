@@ -3,4 +3,9 @@
     <string name="new_name">Name</string>
     <string name="new_balance">Balance</string>
     <string name="button_add">Add</string>
+    <string name="account">Account</string>
+    <string name="remarks">Remarks</string>
+    <string name="amount">Amount</string>
+    <string name="category">Category</string>
+    <string name="date">Date</string>
 </resources>

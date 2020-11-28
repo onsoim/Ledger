@@ -14,6 +14,7 @@ import com.onsoim.ledger.model.LedgerDB
 import com.onsoim.ledger.viewmodel.account.AccountViewModel
 import com.onsoim.ledger.viewmodel.expense.ExpenseViewModel
 import com.onsoim.ledger.views.new.AccountActivity
+import com.onsoim.ledger.views.new.IncomeActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -34,12 +35,22 @@ class MainActivity : AppCompatActivity() {
 
     private fun setButton() {
         setAccount()
+        setIncome()
         setExpense()
     }
 
     private fun setAccount() {
         newAccount.setOnClickListener {
             startActivity(Intent(this, AccountActivity::class.java))
+        }
+    }
+
+    private fun setIncome() {
+        newIncome.setOnClickListener {
+            startActivityForResult(
+                Intent(this, IncomeActivity::class.java),
+                0
+            )
         }
     }
 
@@ -69,17 +80,34 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
-            data?.getSerializableExtra("Expense")?.let {
-                val expense = it as Expense
+        if (resultCode == Activity.RESULT_OK) {
+            when (requestCode) {
+                0 -> {
+                    data?.getSerializableExtra("Income")?.let {
+                        val expense = it as Expense
 
-                accountViewModel = ViewModelProvider(this).get(AccountViewModel::class.java)
-                GlobalScope.launch {
-                    val account = accountViewModel.getAccount(expense.vD1Account, expense.vD2Account)
-                    account.balance -= expense.amount
-                    accountViewModel.update(account)
+                        accountViewModel = ViewModelProvider(this).get(AccountViewModel::class.java)
+                        GlobalScope.launch {
+                            val account = accountViewModel.getAccount(expense.vD1Account, expense.vD2Account)
+                            account.balance += expense.amount
+                            accountViewModel.update(account)
+                        }
+                        expenseViewModel.insert(expense)
+                    }
                 }
-                expenseViewModel.insert(expense)
+                1 -> {
+                    data?.getSerializableExtra("Expense")?.let {
+                        val expense = it as Expense
+
+                        accountViewModel = ViewModelProvider(this).get(AccountViewModel::class.java)
+                        GlobalScope.launch {
+                            val account = accountViewModel.getAccount(expense.vD1Account, expense.vD2Account)
+                            account.balance -= expense.amount
+                            accountViewModel.update(account)
+                        }
+                        expenseViewModel.insert(expense)
+                    }
+                }
             }
         }
     }

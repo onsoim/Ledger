@@ -24,7 +24,7 @@
             android:layout_marginBottom="2.5dp">
             <TextView
                 android:layout_margin="3dp"
-                android:text="Date"/>
+                android:text="@string/date"/>
             <EditText
                 android:id="@+id/vDate"
                 android:layout_height="wrap_content"
@@ -41,14 +41,11 @@
             android:layout_marginBottom="2.5dp">
             <TextView
                 android:layout_margin="3dp"
-                android:text="Category"/>
+                android:text="@string/category"/>
             <EditText
-                android:id="@+id/vD1Category"
+                android:id="@+id/vCategory"
                 android:layout_height="wrap_content"
-                android:inputType="text" />
-            <EditText
-                android:id="@+id/vD2Category"
-                android:layout_height="wrap_content"
+                android:layout_span="2"
                 android:inputType="text" />
         </TableRow>
 
@@ -60,7 +57,7 @@
             android:layout_marginBottom="2.5dp">
             <TextView
                 android:layout_margin="3dp"
-                android:text="Amount"/>
+                android:text="@string/amount"/>
             <EditText
                 android:id="@+id/vAmount"
                 android:layout_height="wrap_content"
@@ -78,7 +75,7 @@
             android:layout_marginBottom="2.5dp">
             <TextView
                 android:layout_margin="3dp"
-                android:text="Account" />
+                android:text="@string/account" />
             <RadioGroup
                 android:id="@+id/vD1Account"
                 android:layout_width="match_parent"
@@ -101,7 +98,7 @@
             android:layout_marginBottom="5dp">
             <TextView
                 android:layout_margin="3dp"
-                android:text="Remarks"/>
+                android:text="@string/remarks"/>
             <EditText
                 android:id="@+id/vRemarks"
                 android:layout_height="wrap_content"

@@ -1,6 +1,7 @@
 package com.onsoim.ledger.views.main
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,6 +38,9 @@ class ExpenseAdapter(private val context: Context, private var expenses: List<Ex
             remark.text = expense.remark
             account.text = expense.vD2Account
             amount.text = expense.amount.toString()
+            if (expense.vD1Category.isNullOrBlank())
+                amount.setTextColor(Color.BLUE)
+            else amount.setTextColor(Color.RED)
         }
     }
 }

@@ -14,27 +14,22 @@ import com.onsoim.ledger.model.Account
 import com.onsoim.ledger.model.Expense
 import com.onsoim.ledger.viewmodel.account.AccountViewModel
 import com.onsoim.ledger.views.main.MainActivity
-import kotlinx.android.synthetic.main.activity_expense.*
+import kotlinx.android.synthetic.main.activity_income.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.io.Serializable
 
-class ExpenseActivity : AppCompatActivity() {
+class IncomeActivity : AppCompatActivity() {
     private lateinit var accountCategory : String
     private lateinit var accountName : String
     private var flag = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_expense)
+        setContentView(R.layout.activity_income)
 
-        setCategory()
         setAccount()
         setButton()
-    }
-
-    private fun setCategory() {
-
     }
 
     private fun setAccount() {
@@ -51,9 +46,8 @@ class ExpenseActivity : AppCompatActivity() {
         newCategory.hint = "new account category"
         vD1Account.addView(newCategory)
 
-        val newName = EditText(this@ExpenseActivity)
+        val newName = EditText(this@IncomeActivity)
         newName.hint = "new account name"
-        // newName.text = null
 
         newCategory.addTextChangedListener(object: TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -86,13 +80,12 @@ class ExpenseActivity : AppCompatActivity() {
                     val c = findViewById<RadioButton>(checkedId)
                     accountCategory = c.text.toString()
                     for (name: String in accountViewModel.getName(accountCategory)) {
-                        val r = RadioButton(this@ExpenseActivity)
+                        val r = RadioButton(this@IncomeActivity)
                         r.text = name
                         runOnUiThread { vD2Account.addView(r) }
                     }
                     runOnUiThread {
                         vD2Account.removeView(newName)
-                        vD2Account.addView(newName)
                     }
                     addNewName(newName)
 
@@ -109,15 +102,16 @@ class ExpenseActivity : AppCompatActivity() {
         submit.setOnClickListener {
             val newExpense = Expense()
             newExpense.date = vDate.text.toString()
-            newExpense.vD1Category = vD1Category.text.toString()
-            newExpense.vD2Category = vD2Category.text.toString()
+            newExpense.vD1Category = ""
+            newExpense.vD2Category = vCategory.text.toString()
             newExpense.vD1Account = accountCategory
             newExpense.vD2Account = accountName
             newExpense.amount = vAmount.text.toString().toLong()
             newExpense.remark = vRemarks.text.toString()
-
+            newExpense.println()
+            println("FINFIN")
             val replyIntent = Intent(this, MainActivity::class.java)
-            replyIntent.putExtra("Expense", newExpense as Serializable)
+            replyIntent.putExtra("Income", newExpense as Serializable)
             setResult(Activity.RESULT_OK, replyIntent)
 
             if (flag) ViewModelProvider(this).get(AccountViewModel::class.java).insert(Account(accountCategory, accountName))
@@ -128,7 +122,10 @@ class ExpenseActivity : AppCompatActivity() {
 
     private fun addNewName(newName: EditText) {
         if (vD2Account.childCount == 0 ) {
-            vD2Account.addView(newName)
+            runOnUiThread {
+                vD2Account.removeView(newName)
+                vD2Account.addView(newName)
+            }
         }
 
         newName.addTextChangedListener(object: TextWatcher {
