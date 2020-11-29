@@ -1,6 +1,7 @@
 package com.onsoim.ledger.views.new
 
 import android.app.Activity
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -18,18 +19,51 @@ import kotlinx.android.synthetic.main.activity_income.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.io.Serializable
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.util.*
 
 class IncomeActivity : AppCompatActivity() {
     private lateinit var accountCategory : String
     private lateinit var accountName : String
+    private val cal = Calendar.getInstance()
     private var flag = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_income)
 
+        setDate()
         setAccount()
         setButton()
+    }
+
+    private fun setDate() {
+        LocalDate.now().toString().also { vDate.text = it }
+
+        val dateSetListener =
+            DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
+                cal.set(Calendar.YEAR, year)
+                cal.set(Calendar.MONTH, monthOfYear)
+                cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                updateDateInView()
+            }
+
+        vDate!!.setOnClickListener {
+            DatePickerDialog(
+                this,
+                dateSetListener,
+                cal.get(Calendar.YEAR),
+                cal.get(Calendar.MONTH),
+                cal.get(Calendar.DAY_OF_MONTH)
+            ).show()
+        }
+    }
+
+    private fun updateDateInView() {
+        val myFormat = "yyyy-MM-dd" // mention the format you need
+        val sdf = SimpleDateFormat(myFormat, Locale.KOREA)
+        vDate!!.text = sdf.format(cal.time)
     }
 
     private fun setAccount() {

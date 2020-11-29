@@ -24,13 +24,15 @@
             android:layout_marginBottom="2.5dp">
             <TextView
                 android:layout_margin="3dp"
-                android:text="Date"/>
-            <EditText
+                android:text="@string/date"/>
+            <TextView
                 android:id="@+id/vDate"
                 android:layout_height="wrap_content"
                 android:layout_span="2"
                 android:maxLength="10"
-                android:inputType="date"/>
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_gravity="center_vertical" />
         </TableRow>
 
         <TableRow
